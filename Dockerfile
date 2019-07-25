@@ -17,6 +17,9 @@ COPY yarn.lock /app
 
 RUN yarn
 
+ENV TZ=America/New_York
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
 COPY . /app
 
 ENTRYPOINT ["node", "index.js"]
